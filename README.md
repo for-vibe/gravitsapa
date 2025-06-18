@@ -7,6 +7,13 @@
 1. Установите Godot 4.4.1 или новее.
 2. Откройте этот каталог как проект и запустите сцену `Main.tscn`.
 
+## Запуск на Windows
+
+1. Скачайте архив с [релизом Godot для Windows](https://godotengine.org/download/windows) и распакуйте его.
+2. Запустите `godot.exe`, нажмите **Import** и выберите этот каталог в качестве проекта.
+3. После открытия проекта нажмите **Run** или F5, чтобы запустить сцену `Main.tscn`.
+4. Для получения самостоятельного `.exe` откройте меню **Project > Export** и создайте пресет "Windows Desktop".
+
 ## Сборка под Android
 
 GitHub Actions собирает APK при каждом пуше в `main` или Pull Request. Файл будет доступен в артефактах workflow по пути `build/android/orbit.apk`.
