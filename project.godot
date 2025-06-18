@@ -1,0 +1,12 @@
+; Engine configuration file.
+
+config_version=5
+
+[application]
+config/name="Orbit Spheres"
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.4")
+config/icon="res://icon.png"
+
+[rendering]
+environment/default_environment="res://default_env.tres"
