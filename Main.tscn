@@ -1,10 +1,13 @@
 [gd_scene format=3]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Rocket.gd" type="Script" id=2]
 
 [sub_resource type="SphereMesh" id=1]
 
 [sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="CylinderMesh" id=3]
 
 [node name="World" type="Node3D"]
 script = ExtResource(1)
@@ -17,3 +20,9 @@ mesh = SubResource(1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6)
+
+[node name="Rocket" type="MeshInstance3D" parent="."]
+mesh = SubResource(3)
+script = ExtResource(2)
+start_body = NodePath("OrbitSphere")
+target_body = NodePath("CenterSphere")
