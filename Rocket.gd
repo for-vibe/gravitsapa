@@ -1,4 +1,4 @@
-extends Node3D
+extends RigidBody3D
 
 # Simple rocket controlled by player with gravitational influences from two bodies.
 
@@ -11,15 +11,15 @@ const G = 1.0
 @export var target_radius: float = 1.0
 
 @export var thrust_force: float = 20.0
-@export var mass: float = 1.0
+@export var rocket_mass: float = 1.0
 @export var fuel_max: float = 5.0
 @export var start_offset: Vector3 = Vector3(0, 0, 1.2)
 
-var velocity: Vector3 = Vector3.ZERO
 var fuel: float
 
 func _ready():
     fuel = fuel_max
+    self.mass = rocket_mass
     if start_body:
         global_transform.origin = start_body.global_transform.origin + start_offset
     if target_body:
@@ -42,11 +42,10 @@ func _physics_process(delta):
             acc += G * mass_target / dist22 * dir2.normalized()
 
     if Input.is_action_pressed("ui_accept") and fuel > 0.0:
-        acc += -global_transform.basis.z * (thrust_force / mass)
+        acc += -global_transform.basis.z * (thrust_force / rocket_mass)
         fuel = max(0.0, fuel - delta)
 
-    velocity += acc * delta
-    global_transform.origin += velocity * delta
+    linear_velocity += acc * delta
 
     var rot_input := 0.0
     if Input.is_action_pressed("ui_left"):
@@ -54,7 +53,9 @@ func _physics_process(delta):
     if Input.is_action_pressed("ui_right"):
         rot_input -= 1.0
     if rot_input != 0.0:
-        rotate_y(rot_input * 1.5 * delta)
+        angular_velocity.y = rot_input * 1.5
+    else:
+        angular_velocity.y = 0.0
 
     if target_body and (target_body.global_transform.origin - pos).length() <= target_radius:
         print("Victory: reached target")
