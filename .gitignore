@@ -17,3 +17,6 @@ mono_crash.*.json
 
 # Build output
 build/
+
+# Test artifacts
+__pycache__/
