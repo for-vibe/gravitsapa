@@ -21,8 +21,10 @@ mesh = SubResource(1)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6)
 
-[node name="Rocket" type="MeshInstance3D" parent="."]
-mesh = SubResource(3)
+[node name="Rocket" type="RigidBody3D" parent="."]
 script = ExtResource(2)
 start_body = NodePath("OrbitSphere")
 target_body = NodePath("CenterSphere")
+
+[node name="Mesh" type="MeshInstance3D" parent="Rocket"]
+mesh = SubResource(3)
